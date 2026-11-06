@@ -1,0 +1,13 @@
+name: Validate application
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate domain behavior
+        run: |
+          php app.php --self-test
